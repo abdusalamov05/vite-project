@@ -7,7 +7,7 @@ export function TwoFactorForm() {
       title="Two-Factor Authentication"
       description="Enter the 6-digit code from the Google Authenticator app"
     >
-      <Input.OTP length={6} />
+      <Input.OTP length={6} autoFocus />
     </AuthWrapper>
   );
 }

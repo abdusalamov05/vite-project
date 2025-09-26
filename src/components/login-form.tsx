@@ -1,7 +1,7 @@
 import { AuthWrapper } from "./auth-wrapper";
-import styled from "@emotion/styled";
-import { Button, Input } from "antd";
+import { Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import styled from "@emotion/styled";
 
 const Form = styled.form`
   display: flex;
@@ -9,14 +9,25 @@ const Form = styled.form`
   gap: 16px;
 `;
 
+const User = styled(UserOutlined)`
+  color: #000;
+  opacity: 0.45;
+`;
+
+const Lock = styled(LockOutlined)`
+  color: #000;
+  opacity: 0.45;
+`;
+
 export function LoginForm() {
   return (
     <AuthWrapper title="Sign in to your account to continue">
       <Form>
-        <Input prefix={<UserOutlined />} placeholder="Email" />
-        <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+        <Input prefix={<User />} placeholder="Email" />
 
-        <Button disabled>Log in</Button>
+        <Input.Password prefix={<Lock />} placeholder="Password" />
+
+        <Button type="primary">Log in</Button>
       </Form>
     </AuthWrapper>
   );
