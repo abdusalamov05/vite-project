@@ -5,11 +5,11 @@ import { LoginForm, TwoFactorForm } from "@/components";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginForm />,
+    Component: LoginForm,
   },
   {
     path: "/2fa",
-    element: <TwoFactorForm />,
+    Component: TwoFactorForm,
   },
 ]);
 

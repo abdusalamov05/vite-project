@@ -94,7 +94,6 @@ export function TwoFactorForm() {
         <StyledButton
           onClick={handleSubmit}
           loading={isPending}
-          disabled={isError}
           type="primary"
           block
         >

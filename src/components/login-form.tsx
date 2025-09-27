@@ -38,8 +38,12 @@ export function LoginForm() {
   const { mutate, isPending, isError, isSuccess, error, data } =
     useLoginMutation();
 
+  const isFormValid = email.trim() !== "" && password.trim() !== "";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid) return;
+
     mutate({ email, password });
   };
 
@@ -67,7 +71,12 @@ export function LoginForm() {
 
         {isSuccess && <SuccessMessage>{data?.message}</SuccessMessage>}
 
-        <Button type="primary" htmlType="submit" loading={isPending}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={isPending}
+          disabled={!isFormValid}
+        >
           Log in
         </Button>
       </Form>
