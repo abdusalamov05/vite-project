@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { LoginForm } from "./components/login-form";
-import { TwoFactorForm } from "./components/two-factor-form";
+import { LoginForm, TwoFactorForm } from "@/components";
 
 const router = createBrowserRouter([
   {

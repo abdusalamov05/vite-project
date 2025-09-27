@@ -2,12 +2,16 @@ import type { PropsWithChildren } from "react";
 import { Card } from "antd";
 import styled from "@emotion/styled";
 
-// const Wrapper = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   min-height: 100vh;
-// `;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+`;
+
+const StyledCard = styled(Card)`
+  width: 440px;
+`;
 
 const CardHeader = styled.header`
   text-align: center;
@@ -47,14 +51,16 @@ export function AuthWrapper({
   children,
 }: PropsWithChildren<AuthWrapperProps>) {
   return (
-    <Card>
-      <CardHeader>
-        <img src="/assets/images/logo.png" alt="logo" />
-        <CardTitle>{title}</CardTitle>
-        {description && <CardDescription>{description}</CardDescription>}
-      </CardHeader>
+    <Wrapper>
+      <StyledCard>
+        <CardHeader>
+          <img src="/assets/images/logo.png" alt="logo" />
+          <CardTitle>{title}</CardTitle>
+          {description && <CardDescription>{description}</CardDescription>}
+        </CardHeader>
 
-      <CardContent>{children}</CardContent>
-    </Card>
+        <CardContent>{children}</CardContent>
+      </StyledCard>
+    </Wrapper>
   );
 }
