@@ -24,6 +24,18 @@ const StyledButton = styled(Button)`
   margin-top: 16px;
 `;
 
+const ErrorMessage = styled.p`
+  margin-top: 5px;
+  color: red;
+  text-align: start;
+`;
+
+const SuccessMessage = styled.p`
+  margin-top: 5px;
+  color: green;
+  text-align: start;
+`;
+
 export function TwoFactorForm() {
   const [code, setCode] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
@@ -65,26 +77,24 @@ export function TwoFactorForm() {
         autoFocus
         value={code}
         onChange={setCode}
+        status={isError ? "error" : undefined}
       />
 
-      {isError && (
-        <p style={{ color: "red", marginTop: "10px" }}>{error?.message}</p>
-      )}
-      {isSuccess && (
-        <p style={{ color: "green", marginTop: "10px" }}>{data?.message}</p>
-      )}
+      {isError && <ErrorMessage>{error?.message}</ErrorMessage>}
+      {isSuccess && <SuccessMessage>{data?.message}</SuccessMessage>}
 
-      {timeLeft > 0 && !isSuccess && code.length < 6 ? (
+      {timeLeft > 0 && code.length < 6 ? (
         <TimerText>
           Get a new code in {String(Math.floor(timeLeft / 60)).padStart(2, "0")}
           :{String(timeLeft % 60).padStart(2, "0")}
         </TimerText>
       ) : null}
 
-      {code.length === 6 && !isSuccess ? (
+      {code.length === 6 ? (
         <StyledButton
           onClick={handleSubmit}
           loading={isPending}
+          disabled={isError}
           type="primary"
           block
         >

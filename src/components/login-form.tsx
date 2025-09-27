@@ -11,6 +11,26 @@ const Form = styled.form`
   gap: 16px;
 `;
 
+const User = styled(UserOutlined)`
+  color: #000;
+  opacity: 0.45;
+`;
+
+const Lock = styled(LockOutlined)`
+  color: #000;
+  opacity: 0.45;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  text-align: start;
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+  text-align: start;
+`;
+
 export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +47,7 @@ export function LoginForm() {
     <AuthWrapper title="Sign in to your account to continue">
       <Form onSubmit={handleSubmit}>
         <Input
-          prefix={<UserOutlined />}
+          prefix={<User />}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
@@ -36,15 +56,16 @@ export function LoginForm() {
         />
 
         <Input.Password
-          prefix={<LockOutlined />}
+          prefix={<Lock />}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           disabled={isPending}
         />
 
-        {isError && <p style={{ color: "red" }}>{error?.message}</p>}
-        {isSuccess && <p style={{ color: "green" }}>{data?.message}</p>}
+        {isError && <ErrorMessage>{error?.message}</ErrorMessage>}
+
+        {isSuccess && <SuccessMessage>{data?.message}</SuccessMessage>}
 
         <Button type="primary" htmlType="submit" loading={isPending}>
           Log in
