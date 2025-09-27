@@ -11,18 +11,6 @@ const Form = styled.form`
   gap: 16px;
 `;
 
-const SuccessMessage = styled.p`
-  font-size: 14px;
-  text-align: start;
-  color: #2ecc71;
-`;
-
-const ErrorMessage = styled.p`
-  font-size: 14px;
-  text-align: start;
-  color: #e74c3c;
-`;
-
 export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,8 +43,8 @@ export function LoginForm() {
           disabled={isPending}
         />
 
-        {isError && <ErrorMessage>{error?.message}</ErrorMessage>}
-        {isSuccess && <SuccessMessage>{data?.message}</SuccessMessage>}
+        {isError && <p style={{ color: "red" }}>{error?.message}</p>}
+        {isSuccess && <p style={{ color: "green" }}>{data?.message}</p>}
 
         <Button type="primary" htmlType="submit" loading={isPending}>
           Log in
